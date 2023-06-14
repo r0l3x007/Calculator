@@ -1,0 +1,93 @@
+body{
+    min-height: 100vh;
+    background: rgb(113,50,156);
+    background: linear-gradient(90deg, rgba(113,50,156,1) 0%, rgba(170,10,10,1) 50%, rgba(181,126,47,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+
+.maincontainer{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 500px;
+    height: 700px;
+    border-radius: 30px ;
+    background-color: rgb(87, 86, 86);
+}
+
+.screen{
+    width:450px;
+    height: 75px;
+    margin-top: 15px;
+    align-self: center;
+    background-color: rgb(178, 213, 243);
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.insideCont{
+display: flex;
+flex-direction: column;
+gap: 40px;
+}
+
+#funcButtons{
+align-self: center;
+}
+
+#firstRow{
+align-self: center;
+}
+
+#secondRow{
+align-self: center;
+}
+
+#thirdRow{
+align-self: center;
+}
+
+ #num0, #num1, #num2, #num3, #num4, #num5, #num6, #num7, #num8, #num9{
+    width:70px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: rgb(224, 136, 19);
+}
+
+#clearBtn, #dltBtn{
+    width: 100px;
+    height: 50px; 
+    border-radius: 10px;
+    background-color: rgb(224, 136, 19);
+}
+
+#mdlBtn, #pointBtn{
+    width: 70px;
+    height:50px;
+    border-radius: 10px;
+    background-color: rgb(224, 136, 19);
+}
+
+#equBtn{
+    width:140px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: rgb(224, 136, 19);
+}
+
+
+#plsuBtn, #minusBtn, #orBtn, #divBtn{
+    width: 70px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: rgb(224, 136, 19);
+}
+
+#operandCont{
+   align-self: center;
+}
+

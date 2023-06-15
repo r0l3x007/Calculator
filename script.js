@@ -14,9 +14,9 @@ function divideNums(a,b){
 return a / b;
 }
 
-let firstNum ;
-let operAnd;
-let secondNum;
+//let firstNum ;
+//let operAnd;
+//let secondNum;
 
 
 function operate (operator, a, b){
@@ -105,12 +105,64 @@ diviBtn.addEventListener(`click`, function(){
     storeNum(`/`);
 });
 
+const clrBtn = document.querySelector(`#clearBtn`);
+clrBtn.addEventListener(`click`, function(){
+    primaryScreen.textContent = ``;
+    secondaryScreen.textContent = ``;
+    numNum.length = 0;
+});
+
+const dltBtn =  document.querySelector(`#dltBtn`);
+dltBtn.addEventListener(`click`, function(){
+
+    if(numNum.length === 1){
+        numNum.splice(0);
+    }else{
+        numNum.splice(-1,1);
+    }
+    strNum = numNum.join(``);
+    primaryScreen.textContent = `${strNum}`
+});
+
+
+
 function storeNum(num){
     numNum.push(num);
-    primaryScreen.textContent = `${numNum}`;
+    strNum = numNum.join(``);
+    primaryScreen.textContent = `${strNum}`;
 };
 
+let operatorArr = [];
+let num1Arr = [];
+let num2Arr = [];
+let strNum ;
 
+function separateArray(){
+    for(let i = 0; i < numNum.length; i++){
+        if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `/` || numNum[i] === `*`){
+            operatorArr = numNum.slice(i,i+1);
+            num1Arr = numNum.slice(0,i);
+            num2Arr = numNum.slice(i+1);
+
+            console.log(operatorArr);
+            console.log(num1Arr);
+            console.log(num2Arr);
+        }
+    }
+
+    let num1 = num1Arr.join(``);
+    let num2 = num2Arr.join(``);
+    let operatorNum =  operatorArr.join(``);
+    return operate(operatorNum,Number(num1),Number(num2));
+    
+}
+const secondaryScreen =  document.querySelector(`#newnumber`);
+
+const equBtn =  document.querySelector(`#equBtn`);
+equBtn.addEventListener(`click`, function(){
+   let result = separateArray();
+   secondaryScreen.textContent  = `${result}`;
+});
 //create an empty array that stores the numbers and symbols
 
 //iterate over the array and separate them to two arrays one for the first num and one for the 2nd num

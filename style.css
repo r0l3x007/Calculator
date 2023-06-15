@@ -23,10 +23,18 @@ body{
     width:450px;
     height: 75px;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-self: center;
     background-color: rgb(178, 213, 243);
     border-radius: 25px;
     margin-bottom: 15px;
+}
+
+#permnumber, #newnumber{
+    align-self: flex-end;
+    padding-right: 30px;
 }
 
 .insideCont{
@@ -36,7 +44,8 @@ gap: 40px;
 }
 
 #funcButtons{
-align-self: center;
+padding-top: 30px;
+align-self:center;
 }
 
 #firstRow{

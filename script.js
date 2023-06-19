@@ -33,6 +33,10 @@ if(operator === `+`){
 
 //create eventlisteners with on click
 let numNum = [];
+let operatorArr = [];
+let num1Arr = [];
+let num2Arr = [];
+let strNum ;
 //let storeNum = [];
 const btn0 =  document.querySelector(`#num0`);
 let primaryScreen =  document.querySelector(`#permnumber`);
@@ -87,22 +91,23 @@ btn9.addEventListener(`click`, function(){
 
 const plusBtn =  document.querySelector(`#plsuBtn`);
 plusBtn.addEventListener(`click`, function(){
-    storeNum(`+`);
+    checkOperator(`+`);
+    
 });
 
 const minusBtn =  document.querySelector(`#minusBtn`);
 minusBtn.addEventListener(`click`, function(){
-    storeNum(`-`);
+    checkOperator(`-`);
 });
 
 const oriBtn = document.querySelector(`#orBtn`);
 oriBtn.addEventListener(`click`, function(){
-    storeNum(`*`);
+    checkOperator(`*`);
 });
 
 const diviBtn = document.querySelector(`#divBtn`);
 diviBtn.addEventListener(`click`, function(){
-    storeNum(`/`);
+    checkOperator(`/`);
 });
 
 const clrBtn = document.querySelector(`#clearBtn`);
@@ -110,6 +115,10 @@ clrBtn.addEventListener(`click`, function(){
     primaryScreen.textContent = ``;
     secondaryScreen.textContent = ``;
     numNum.length = 0;
+    num1Arr.length = 0;
+    num2Arr.length = 0;
+    operatorArr.length = 0;
+    
 });
 
 const dltBtn =  document.querySelector(`#dltBtn`);
@@ -125,6 +134,22 @@ dltBtn.addEventListener(`click`, function(){
 });
 
 
+function checkOperator(opertoar){
+    if (isNaN(separateArray())){
+        storeNum(opertoar);
+        console.log(numNum);
+    }else{
+        numNum.length = 0;
+        numNum.push(separateArray());
+        storeNum(opertoar);
+        console.log(numNum);
+    }
+    
+}
+
+
+//if the operator button is pushed a 2nd time then then operate the untile collected nums 
+
 
 function storeNum(num){
     numNum.push(num);
@@ -132,30 +157,32 @@ function storeNum(num){
     primaryScreen.textContent = `${strNum}`;
 };
 
-let operatorArr = [];
-let num1Arr = [];
-let num2Arr = [];
-let strNum ;
 
 function separateArray(){
     for(let i = 0; i < numNum.length; i++){
-        if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `/` || numNum[i] === `*`){
-            operatorArr = numNum.slice(i,i+1);
+        if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `/` || numNum[i] === `*` ){
+            
             num1Arr = numNum.slice(0,i);
+            operatorArr = numNum.slice(i,i+1);
             num2Arr = numNum.slice(i+1);
-
-            console.log(operatorArr);
-            console.log(num1Arr);
-            console.log(num2Arr);
+            //console.log(num1Arr);
+            //console.log(operatorArr);
+            //console.log(num2Arr);
         }
     }
 
     let num1 = num1Arr.join(``);
     let num2 = num2Arr.join(``);
     let operatorNum =  operatorArr.join(``);
+    //let result = operate(operatorNum,Number(num1),Number(num2));
+   // console.log(result);
     return operate(operatorNum,Number(num1),Number(num2));
     
 }
+
+//check if there are multiple pluses operators in the array
+
+
 const secondaryScreen =  document.querySelector(`#newnumber`);
 
 const equBtn =  document.querySelector(`#equBtn`);

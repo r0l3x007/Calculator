@@ -14,9 +14,6 @@ function divideNums(a,b){
 return a / b;
 }
 
-//let firstNum ;
-//let operAnd;
-//let secondNum;
 
 
 function operate (operator, a, b){
@@ -31,13 +28,15 @@ if(operator === `+`){
 }
 }
 
-//create eventlisteners with on click
+
 let numNum = [];
 let operatorArr = [];
 let num1Arr = [];
 let num2Arr = [];
 let strNum ;
-//let storeNum = [];
+
+//eventlistenners for the buttons of the calculator
+
 const btn0 =  document.querySelector(`#num0`);
 let primaryScreen =  document.querySelector(`#permnumber`);
 btn0.addEventListener(`click`,  function(){
@@ -89,10 +88,15 @@ btn9.addEventListener(`click`, function(){
     storeNum(9);
 });
 
+
+const decBtn =  document.querySelector(`#pointBtn`)
+decBtn.addEventListener(`click`, function(){
+    storeNum(`.`);
+});
+
 const plusBtn =  document.querySelector(`#plsuBtn`);
 plusBtn.addEventListener(`click`, function(){
     checkOperator(`+`);
-    
 });
 
 const minusBtn =  document.querySelector(`#minusBtn`);
@@ -110,6 +114,8 @@ diviBtn.addEventListener(`click`, function(){
     checkOperator(`/`);
 });
 
+//Clears everything on both of the calculator screens
+
 const clrBtn = document.querySelector(`#clearBtn`);
 clrBtn.addEventListener(`click`, function(){
     primaryScreen.textContent = ``;
@@ -120,6 +126,8 @@ clrBtn.addEventListener(`click`, function(){
     operatorArr.length = 0;
     
 });
+
+//Deletes one item from the screen, and from the array
 
 const dltBtn =  document.querySelector(`#dltBtn`);
 dltBtn.addEventListener(`click`, function(){
@@ -133,7 +141,7 @@ dltBtn.addEventListener(`click`, function(){
     primaryScreen.textContent = `${strNum}`
 });
 
-
+//Executes the operation after 2 numbers are entered and stores the result in the array
 function checkOperator(opertoar){
     if (isNaN(separateArray())){
         storeNum(opertoar);
@@ -148,8 +156,8 @@ function checkOperator(opertoar){
 }
 
 
-//if the operator button is pushed a 2nd time then then operate the untile collected nums 
 
+//stores the number or the operator
 
 function storeNum(num){
     numNum.push(num);
@@ -157,6 +165,7 @@ function storeNum(num){
     primaryScreen.textContent = `${strNum}`;
 };
 
+//separates the array into sub arrays and returns the operate function with the result of the inputted numbers and operator used
 
 function separateArray(){
     for(let i = 0; i < numNum.length; i++){
@@ -165,35 +174,43 @@ function separateArray(){
             num1Arr = numNum.slice(0,i);
             operatorArr = numNum.slice(i,i+1);
             num2Arr = numNum.slice(i+1);
-            //console.log(num1Arr);
-            //console.log(operatorArr);
-            //console.log(num2Arr);
         }
     }
 
     let num1 = num1Arr.join(``);
     let num2 = num2Arr.join(``);
     let operatorNum =  operatorArr.join(``);
-    //let result = operate(operatorNum,Number(num1),Number(num2));
-   // console.log(result);
-    return operate(operatorNum,Number(num1),Number(num2));
+    if(num2 === `0`){
+        primaryScreen.textContent = `You tried to do something naughty didn't you ?`
+        return ``;
+    }
+
+    let result = operate(operatorNum,Number(num1),Number(num2));
+   
+    if(result%1 !== 0){
+    return parseFloat(result).toFixed(5);
+    } else return result;
+
     
 }
 
-//check if there are multiple pluses operators in the array
 
 
 const secondaryScreen =  document.querySelector(`#newnumber`);
 
+
+//executes the operation based on the operand.
+
 const equBtn =  document.querySelector(`#equBtn`);
 equBtn.addEventListener(`click`, function(){
-   let result = separateArray();
-   secondaryScreen.textContent  = `${result}`;
+    if(isNaN(separateArray()) && numNum.length === 0){
+        primaryScreen.textContent = `Oopsie you did not enter any numbers!`;
+    }else if(isNaN(separateArray()) && numNum.length > 1 ){
+        primaryScreen.textContent = `Math error!`
+
+    }else{
+    let result = separateArray();
+    secondaryScreen.textContent  = `${result}`;
+    }
+    
 });
-//create an empty array that stores the numbers and symbols
-
-//iterate over the array and separate them to two arrays one for the first num and one for the 2nd num
-
-//convert the array to a string , then convert it to a number
-
-//call the calculate function based on the operator 

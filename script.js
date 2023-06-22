@@ -283,16 +283,16 @@ document.addEventListener(`keydown`, function(event){
             storeNum(9);
             break;
         case `+`:
-            storeNum(`+`);
+            checkOperator(`+`);
             break;
         case `-`:
-            storeNum(`-`);
+            checkOperator(`-`);
             break;
         case `*`:
-            storeNum(`*`);
+            checkOperator(`*`);
             break;
         case `/`:
-            storeNum(`/`);
+            checkOperator(`/`);
             break;
         case `.`:
             checkDecimal();

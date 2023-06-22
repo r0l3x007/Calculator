@@ -133,21 +133,23 @@ diviBtn.addEventListener(`click`, function(){
 //Clears everything on both of the calculator screens
 
 const clrBtn = document.querySelector(`#clearBtn`);
-clrBtn.addEventListener(`click`, function(){
+clrBtn.addEventListener(`click`, clrEverything);
+
+function clrEverything(){
     primaryScreen.textContent = ``;
     secondaryScreen.textContent = ``;
     numNum.length = 0;
     num1Arr.length = 0;
     num2Arr.length = 0;
     operatorArr.length = 0;
-    
-});
+}
 
 //Deletes one item from the screen, and from the array
 
 const dltBtn =  document.querySelector(`#dltBtn`);
-dltBtn.addEventListener(`click`, function(){
-    
+dltBtn.addEventListener(`click`, backSpace);
+
+function backSpace (){
     if(numNum.length === 1){
         numNum.splice(0);
         console.log(numNum);
@@ -166,8 +168,7 @@ dltBtn.addEventListener(`click`, function(){
     
     strNum = numNum.join(``);
     primaryScreen.textContent = `${strNum}`
-    
-});
+}
 
 //Executes the operation after 2 numbers are entered and stores the result in the array
 function checkOperator(opertoar){
@@ -230,7 +231,11 @@ const secondaryScreen =  document.querySelector(`#newnumber`);
 //executes the operation based on the operand.
 
 const equBtn =  document.querySelector(`#equBtn`);
-equBtn.addEventListener(`click`, function(){
+equBtn.addEventListener(`click`, evalTheEquation);
+
+
+function evalTheEquation(){
+
     if(isNaN(separateArray()) && numNum.length === 0){
         primaryScreen.textContent = `Oopsie you did not enter any numbers!`;
     }else if(isNaN(separateArray()) && numNum.length > 1 ){
@@ -240,5 +245,66 @@ equBtn.addEventListener(`click`, function(){
     resUlt = separateArray();
     secondaryScreen.textContent  = `${resUlt}`;
     }
-    
-});
+}
+
+//added keyboard support for the calculator
+
+document.addEventListener(`keydown`, function(event){ 
+    console.log(event);
+    switch(event.key){
+        case `0`:
+            storeNum(0);
+            break;
+        case `1`:
+            storeNum(1);
+            break;
+        case `2`:
+            storeNum(2);
+            break;
+        case `3`:
+            storeNum(3);
+            break;
+        case `4`:
+            storeNum(4);
+            break;
+        case `5`:
+            storeNum(5);
+            break;
+        case `6`:
+            storeNum(6);
+            break;
+        case `7`:
+            storeNum(7);
+            break;
+        case `8`:
+            storeNum(8);
+            break;
+        case `9`:
+            storeNum(9);
+            break;
+        case `+`:
+            storeNum(`+`);
+            break;
+        case `-`:
+            storeNum(`-`);
+            break;
+        case `*`:
+            storeNum(`*`);
+            break;
+        case `/`:
+            storeNum(`/`);
+            break;
+        case `.`:
+            storeNum(`.`);
+            break;
+        case `Backspace`:
+            backSpace();
+            break;
+        case `Delete`:
+            clrEverything();
+            break;
+        case `Enter`:
+            evalTheEquation();
+            break;
+    }
+})

@@ -28,7 +28,6 @@ if(operator === `+`){
 }
 }
 
-
 let numNum = [];
 let operatorArr = [];
 let num1Arr = [];
@@ -90,9 +89,48 @@ btn9.addEventListener(`click`, function(){
 
 
 const decBtn =  document.querySelector(`#pointBtn`)
-decBtn.addEventListener(`click`, function(){
+decBtn.addEventListener(`click`, checkDecimal);
+
+
+function checkDecimal(){
+    let firstPart = [];
+    let secondPart = [];
+    for(let i = 0; i < numNum.length; i++){
+        if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `/` || numNum[i] === `*` ){
+            firstPart = numNum.slice(0,i);
+            secondPart = numNum.slice(i+1);
+        }
+    }
+
+   if(!(numNum.includes(`.`)) ){
     storeNum(`.`);
-});
+   }else if(firstPart.includes(`.`) && !(secondPart.includes(`.`)) ){
+    storeNum(`.`);
+   }
+};
+   /* let decCounter = 0;
+    let operCounter = 0;
+    if(numNum.length !== 0){
+    for(let i = 0; numNum.length; i++){
+        if(numNum[i] === `.`){
+            decCounter++;
+        } else if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `*` || numNum[i] === `/`){
+            operCounter++;
+        }
+    }
+    }   
+
+    if(decCounter === 0){
+        storeNum(`.`);
+    }else if(decCounter === 1 && operCounter === 1){
+        storeNum(`.`)
+    }*/
+
+    /*if (isNaN(separateArray())){
+        storeNum(`.`);
+        console.log(numNum);
+    } */
+
 
 const plusBtn =  document.querySelector(`#plsuBtn`);
 plusBtn.addEventListener(`click`, function(){
@@ -143,6 +181,7 @@ dltBtn.addEventListener(`click`, function(){
 
 //Executes the operation after 2 numbers are entered and stores the result in the array
 function checkOperator(opertoar){
+
     if (isNaN(separateArray())){
         storeNum(opertoar);
         console.log(numNum);
@@ -156,13 +195,14 @@ function checkOperator(opertoar){
 }
 
 
-
 //stores the number or the operator
 
 function storeNum(num){
+    if(numNum.length < 20){
     numNum.push(num);
     strNum = numNum.join(``);
     primaryScreen.textContent = `${strNum}`;
+    }
 };
 
 //separates the array into sub arrays and returns the operate function with the result of the inputted numbers and operator used

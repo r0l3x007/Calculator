@@ -91,7 +91,7 @@ btn9.addEventListener(`click`, function(){
 const decBtn =  document.querySelector(`#pointBtn`)
 decBtn.addEventListener(`click`, checkDecimal);
 
-
+//checks if decimal is present in the first and second number, if the criteria is met adds a decimal
 function checkDecimal(){
     let firstPart = [];
     let secondPart = [];
@@ -108,29 +108,6 @@ function checkDecimal(){
     storeNum(`.`);
    }
 };
-   /* let decCounter = 0;
-    let operCounter = 0;
-    if(numNum.length !== 0){
-    for(let i = 0; numNum.length; i++){
-        if(numNum[i] === `.`){
-            decCounter++;
-        } else if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `*` || numNum[i] === `/`){
-            operCounter++;
-        }
-    }
-    }   
-
-    if(decCounter === 0){
-        storeNum(`.`);
-    }else if(decCounter === 1 && operCounter === 1){
-        storeNum(`.`)
-    }*/
-
-    /*if (isNaN(separateArray())){
-        storeNum(`.`);
-        console.log(numNum);
-    } */
-
 
 const plusBtn =  document.querySelector(`#plsuBtn`);
 plusBtn.addEventListener(`click`, function(){
@@ -233,8 +210,6 @@ function separateArray(){
 
     
 }
-
-
 
 const secondaryScreen =  document.querySelector(`#newnumber`);
 

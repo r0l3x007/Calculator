@@ -295,7 +295,7 @@ document.addEventListener(`keydown`, function(event){
             storeNum(`/`);
             break;
         case `.`:
-            storeNum(`.`);
+            checkDecimal();
             break;
         case `Backspace`:
             backSpace();

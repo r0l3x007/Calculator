@@ -172,18 +172,33 @@ function backSpace (){
 
 //Executes the operation after 2 numbers are entered and stores the result in the array
 function checkOperator(opertoar){
+  
+   let operTraitor = [];
+   let firstPart = [];
+   let secondPart = [];
 
-    if (isNaN(separateArray())){
+    for(let i = 0;i < numNum.length; i++){
+        if(numNum[i] === `+` || numNum[i] === `-` || numNum[i] === `/` || numNum[i] === `*` ){
+            firstPart = numNum.slice(0,1)
+            operTraitor = numNum.slice(i,i+1);
+            secondPart = numNum.slice(i+1)
+        }
+    }
+
+
+   if (operTraitor.length === 0){
         storeNum(opertoar);
         console.log(numNum);
-    }else{
+    }else if(operTraitor.length === 1 && secondPart.length > 0 && !isNaN(separateArray())){
         numNum.length = 0;
         numNum.push(separateArray());
         storeNum(opertoar);
         console.log(numNum);
     }
     
-}
+} 
+    
+
 
 
 //stores the number or the operator
@@ -212,7 +227,7 @@ function separateArray(){
     let num2 = num2Arr.join(``);
     let operatorNum =  operatorArr.join(``);
     if(num2 === `0`){
-        primaryScreen.textContent = `You tried to do something naughty didn't you ?`
+        primaryScreen.textContent = `You tried to do something naughty didn't you?`
         return ``;
     }
 

@@ -20,6 +20,10 @@ body{
     box-shadow: 3px 3px 10px 5px;
 }
 
+#permnumber, #newnumber{
+    text-align: center;
+}
+
 .screen{
     width:350px;
     height: 75px;

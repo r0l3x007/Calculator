@@ -160,7 +160,7 @@ function backSpace (){
     
     if (primaryScreen.textContent === ``){
         secondaryScreen.textContent = ``;
-        numNum.lenght = 0;
+        numNum.length = 0;
         num1Arr.length = 0;
         num2Arr.length = 0;
         operatorArr.length = 0;
@@ -226,12 +226,19 @@ function separateArray(){
     let num1 = num1Arr.join(``);
     let num2 = num2Arr.join(``);
     let operatorNum =  operatorArr.join(``);
-    if(num2 === `0`){
-        primaryScreen.textContent = `You tried to do something naughty didn't you?`
-        return ``;
-    }
+   
 
     let result = operate(operatorNum,Number(num1),Number(num2));
+
+     if(num2 === `0` && operatorNum === `/`){
+        primaryScreen.textContent = `You tried to do something naughty didn't you?`
+        numNum.length = 0;
+        num1Arr.length = 0;
+        num2Arr.length = 0;
+        operatorArr.length = 0
+        secondaryScreen.textContent = ``;
+        return ``;
+    }
    
     if(result%1 !== 0){
     return parseFloat(result).toFixed(5);
@@ -240,7 +247,7 @@ function separateArray(){
     
 }
 
-const secondaryScreen =  document.querySelector(`#newnumber`);
+let secondaryScreen =  document.querySelector(`#newnumber`);
 
 
 //executes the operation based on the operand.
@@ -256,7 +263,7 @@ function evalTheEquation(){
     }else if(isNaN(separateArray()) && numNum.length > 1 ){
         primaryScreen.textContent = `Math error!`
 
-    }else{
+    }else if (!isNaN(separateArray())){
     resUlt = separateArray();
     secondaryScreen.textContent  = `${resUlt}`;
     }
